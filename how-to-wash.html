@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>お風呂掃除ガイド</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6fbff;
+        --paper: rgba(255, 255, 255, 0.92);
+        --ink: #193142;
+        --muted: #587384;
+        --line: rgba(25, 49, 66, 0.12);
+        --blue: #7cc7e8;
+        --mint: #b9e7d9;
+        --sand: #f4e5c8;
+        --shadow: 0 20px 60px rgba(70, 110, 134, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Zen Maru Gothic", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(124, 199, 232, 0.35), transparent 24%),
+          radial-gradient(circle at bottom right, rgba(185, 231, 217, 0.38), transparent 28%),
+          linear-gradient(180deg, #eef9ff 0%, #f8fcff 100%);
+      }
+
+      .wrap {
+        width: min(1080px, calc(100% - 24px));
+        margin: 0 auto;
+        padding: 28px 0 56px;
+      }
+
+      .hero,
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .hero {
+        padding: 28px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: -30px;
+        width: 180px;
+        height: 180px;
+        background: linear-gradient(135deg, rgba(124, 199, 232, 0.44), rgba(185, 231, 217, 0.2));
+        border-radius: 36px;
+        transform: rotate(18deg);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+
+      h1,
+      h2 {
+        font-family: "Fraunces", serif;
+      }
+
+      h1 {
+        font-size: clamp(38px, 6vw, 68px);
+        line-height: 0.95;
+        max-width: 10ch;
+      }
+
+      .lead {
+        margin: 14px 0 0;
+        max-width: 48rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .chip {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .section-title {
+        margin-bottom: 14px;
+        font-size: 32px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline-item {
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 16px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,251,255,0.9));
+      }
+
+      .timeline-item h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.2em;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .tips {
+        display: grid;
+        gap: 12px;
+      }
+
+      .tip {
+        border-radius: 22px;
+        padding: 16px;
+      }
+
+      .tip:nth-child(1) {
+        background: linear-gradient(135deg, rgba(124, 199, 232, 0.18), rgba(124, 199, 232, 0.04));
+      }
+
+      .tip:nth-child(2) {
+        background: linear-gradient(135deg, rgba(244, 229, 200, 0.38), rgba(244, 229, 200, 0.1));
+      }
+
+      .tip:nth-child(3) {
+        background: linear-gradient(135deg, rgba(185, 231, 217, 0.34), rgba(185, 231, 217, 0.08));
+      }
+
+      .tip strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .tip p,
+      .mini p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .mini-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mini {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .wrap {
+          width: min(100% - 16px, 1080px);
+          padding-top: 16px;
+        }
+
+        .hero,
+        .card {
+          border-radius: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <p class="eyebrow">Bathroom Care Guide</p>
+        <h1>お風呂掃除の頻度とポイント</h1>
+        <p class="lead">
+          毎日の小さなひと手間で、カビと水垢をためにくくする。週1回で全体を整えて、月1回で見えない部分までリセットする。
+        </p>
+        <div class="chips">
+          <span class="chip">毎日 3分</span>
+          <span class="chip">週1回 15〜20分</span>
+          <span class="chip">月1回 20〜30分</span>
+          <span class="chip">換気が大事</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2 class="section-title">掃除の頻度</h2>
+          <div class="timeline">
+            <section class="timeline-item">
+              <h3>毎日</h3>
+              <ul>
+                <li>使用後に壁や床へシャワーをかけて、汚れを流す</li>
+                <li>水滴を軽く拭き取る</li>
+                <li>換気扇を回す、または窓を開けて換気する</li>
+                <li>排水口の髪の毛や大きなゴミを取り除く</li>
+              </ul>
+            </section>
+
+            <section class="timeline-item">
+              <h3>週に1回</h3>
+              <ul>
+                <li>壁、床、浴槽、蛇口、鏡を浴室用洗剤で洗う</li>
+                <li>カビや水垢が付きやすい場所を重点的にこする</li>
+                <li>排水口のパーツを外して、ブラシでしっかり洗う</li>
+              </ul>
+            </section>
+
+            <section class="timeline-item">
+              <h3>月に1回</h3>
+              <ul>
+                <li>天井や換気扇カバーを拭く</li>
+                <li>防カビ剤を使って予防する</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="section-title">掃除のコツ</h2>
+          <div class="tips">
+            <section class="tip">
+              <strong>上から下へ</strong>
+              <p>天井、壁、浴槽、床の順に進めると、汚れ戻りが少なく効率的です。</p>
+            </section>
+            <section class="tip">
+              <strong>洗剤は置いてから流す</strong>
+              <p>水垢、石鹸カス、カビなど汚れに合う洗剤を使い、少し置いてから流すと落ちやすくなります。</p>
+            </section>
+            <section class="tip">
+              <strong>換気は掃除中も続ける</strong>
+              <p>匂いがこもるのを防ぎつつ、湿気を逃がしてカビ対策にもつながります。</p>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2 class="section-title">床掃除ロボを使うなら</h2>
+          <div class="mini-grid">
+            <section class="mini">
+              <h3>動かす頻度</h3>
+              <p>
+                週に2〜3回がおすすめです。シャワーや入浴後に床がしっかり乾いてから動かすと、皮脂汚れや石鹸カスをためにくくなります。
+              </p>
+            </section>
+            <section class="mini">
+              <h3>使うタイミング</h3>
+              <p>
+                床が濡れたままだと取り切れない汚れもあるので、完全に乾いてから稼働させるのがポイントです。
+              </p>
+            </section>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="section-title">本体のお手入れ</h2>
+          <div class="mini-grid">
+            <section class="mini">
+              <h3>ダストボックス</h3>
+              <p>毎回の稼働後にゴミ捨て。水洗いできる型は定期的に洗って乾燥。</p>
+            </section>
+            <section class="mini">
+              <h3>ブラシ</h3>
+              <p>数回ごとに髪の毛やゴミを除去。ハサミや専用ツールが便利。</p>
+            </section>
+            <section class="mini">
+              <h3>フィルター</h3>
+              <p>週1回ほどホコリを落とし、水洗い対応型は月1回洗って完全乾燥。</p>
+            </section>
+            <section class="mini">
+              <h3>センサーと車輪</h3>
+              <p>乾いた布や綿棒で拭いて、髪の毛の絡まりや動きの悪さがないか確認。</p>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <p class="footer-note">
+        QRコード化するなら、このページの公開URLをそのまま使えます。たとえば
+        `https://<your-name>.github.io/<repo-name>/how-to-wash.html`
+        のようなURLでも問題ありません。
+      </p>
+    </main>
+  </body>
+</html>

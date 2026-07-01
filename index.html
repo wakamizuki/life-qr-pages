@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversation Reset</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-blur background-blur-left"></div>
+    <div class="background-blur background-blur-right"></div>
+
+    <main class="shell">
+      <section class="gate card" id="gate">
+        <p class="eyebrow">Private Check-In</p>
+        <h1>入る前に、自分の姿勢を整えるページ</h1>
+        <p class="lead">
+          GitHub Pagesでそのまま動く、個人用の確認ページです。まずはパスコードを入れて開きます。
+        </p>
+        <label class="field">
+          <span>パスコード</span>
+          <input id="passcode-input" type="password" placeholder="passcode" autocomplete="current-password" />
+        </label>
+        <button id="unlock-button" class="primary-button" type="button">開く</button>
+        <p id="gate-message" class="hint">
+          この保護は簡易版です。GitHub Pages上では本格的な認証ではないので、秘密情報は置かない運用をおすすめします。
+        </p>
+      </section>
+
+      <section class="app hidden" id="app">
+        <header class="hero card">
+          <div>
+            <p class="eyebrow">Conversation Reset</p>
+            <h1>理解を先に置くための、小さな儀式</h1>
+            <p class="lead">
+              質問だけで終わらせず、仮説を持って向き合う。好意は言葉だけではなく、行動でも示す。
+            </p>
+          </div>
+          <div class="hero-actions">
+            <button id="lock-button" class="ghost-button" type="button">閉じる</button>
+            <button id="export-button" class="ghost-button" type="button">記録を書き出す</button>
+          </div>
+        </header>
+
+        <section class="grid">
+          <article class="card">
+            <p class="section-label">Before You Enter</p>
+            <h2>今日の前提</h2>
+            <div class="checklist" id="entry-checklist"></div>
+          </article>
+
+          <article class="card">
+            <p class="section-label">Hypothesis</p>
+            <h2>仮説ベースで聞くための準備</h2>
+            <div class="stack">
+              <label class="field">
+                <span>今の自分の仮説</span>
+                <textarea id="hypothesis-input" rows="4" placeholder="例: 連絡の仕方が雑に見えて、不安や軽視された感じにつながっているかもしれない。"></textarea>
+              </label>
+              <label class="field">
+                <span>仮説をやわらかく聞く言い方</span>
+                <textarea id="question-input" rows="3" placeholder="例: もしかして、今日のやり取りが雑に感じて嫌だったから怒ってる?"></textarea>
+              </label>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="section-label">Her Lens</p>
+            <h2>彼女が大事にしていること</h2>
+            <label class="field">
+              <span>理想の順位メモ</span>
+              <textarea id="her-priorities" rows="6" placeholder="上から順位で書く。例: 1. 安心感 2. 行動での愛情 3. 比較しないこと"></textarea>
+            </label>
+            <label class="field">
+              <span>行動で示せたこと</span>
+              <textarea id="action-signals" rows="4" placeholder="例: 今日は話を遮らず最後まで聞いた / 帰る前に次回の改善を具体化した"></textarea>
+            </label>
+          </article>
+
+          <article class="card">
+            <p class="section-label">My Lens</p>
+            <h2>自分の優先順位とズレ</h2>
+            <label class="field">
+              <span>自分の順位メモ</span>
+              <textarea id="my-priorities" rows="6" placeholder="自分が大事にしがちな順番を書く"></textarea>
+            </label>
+            <label class="field">
+              <span>今日気をつけるズレ</span>
+              <textarea id="gap-input" rows="4" placeholder="例: 正しさを急ぎすぎる / 気持ちの確認より説明を先にしやすい"></textarea>
+            </label>
+          </article>
+
+          <article class="card wide">
+            <p class="section-label">Conversation Notes</p>
+            <h2>会話のあとに残すログ</h2>
+            <div class="stack">
+              <label class="field">
+                <span>今日の会話の要点</span>
+                <textarea id="summary-input" rows="4" placeholder="何が起きて、何が本当の論点だったか"></textarea>
+              </label>
+              <label class="field">
+                <span>彼女の理想をどれくらいできたか</span>
+                <textarea id="reflection-input" rows="4" placeholder="できたこと / できなかったこと / 次に直すこと"></textarea>
+              </label>
+              <label class="field">
+                <span>次回の具体アクション</span>
+                <textarea id="next-action-input" rows="3" placeholder="例: 次回は先に5分聞ききる / 比較っぽい表現は使わない"></textarea>
+              </label>
+            </div>
+            <div class="button-row">
+              <button id="save-button" class="primary-button" type="button">今日の記録を保存</button>
+              <button id="clear-button" class="ghost-button" type="button">入力だけ消す</button>
+            </div>
+            <p id="save-message" class="hint"></p>
+          </article>
+
+          <article class="card wide">
+            <p class="section-label">Saved Logs</p>
+            <h2>これまでの記録</h2>
+            <div id="logs" class="logs"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="./config.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
