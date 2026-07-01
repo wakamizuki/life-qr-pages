@@ -109,6 +109,14 @@
         margin-top: 18px;
       }
 
+      .back-link {
+        display: inline-block;
+        margin-top: 18px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
       .chip {
         background: #ffffff;
         border: 1px solid var(--line);
@@ -209,6 +217,10 @@
         font-size: 14px;
       }
 
+      .no-break {
+        white-space: nowrap;
+      }
+
       @media (max-width: 860px) {
         .grid {
           grid-template-columns: 1fr;
@@ -230,7 +242,7 @@
     <main class="wrap">
       <section class="hero">
         <p class="eyebrow">Bathroom Care Guide</p>
-        <h1>お風呂掃除の頻度とポイント</h1>
+        <h1>お風呂掃除の頻度と<span class="no-break">ポイント</span></h1>
         <p class="lead">
           毎日の小さなひと手間で、カビと水垢をためにくくする。週1回で全体を整えて、月1回で見えない部分までリセットする。
         </p>
@@ -240,6 +252,7 @@
           <span class="chip">月1回 20〜30分</span>
           <span class="chip">換気が大事</span>
         </div>
+        <a class="back-link" href="./index.html">← メインページに戻る</a>
       </section>
 
       <section class="grid">

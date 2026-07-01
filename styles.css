@@ -389,6 +389,10 @@ textarea:focus {
   color: var(--ink);
 }
 
+.no-break {
+  white-space: nowrap;
+}
+
 .hidden {
   display: none;
 }

@@ -1,5 +1,5 @@
 window.APP_CONFIG = {
-  passcode: "temple",
+  passcodes: ["tem", "temple"],
   webhookUrl: "",
   webhookToken: "",
 };

@@ -107,6 +107,28 @@
         font-size: 13px;
         font-weight: 700;
       }
+      .day-cell {
+        min-width: 9rem;
+      }
+      .day-block {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: rgba(255, 245, 250, 0.95);
+        border: 1px solid var(--line);
+        text-align: center;
+        line-height: 1.45;
+      }
+      .day-block strong {
+        font-size: 16px;
+      }
+      .day-block span {
+        font-size: 13px;
+        color: var(--muted);
+      }
       .pink { background: var(--pink); }
       .mint { background: var(--mint); }
       .peach { background: var(--peach); }
@@ -153,6 +175,19 @@
           border-bottom: 1px solid rgba(198, 137, 168, 0.1);
           padding: 12px 14px;
         }
+        tbody td.category-cell,
+        tbody td.day-cell {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          width: auto;
+          max-width: 100%;
+          border-bottom: none;
+          padding: 12px 14px 0;
+        }
+        tbody td.day-cell {
+          padding-top: 10px;
+        }
         tbody td:last-child { border-bottom: none; }
         tbody td::before {
           content: attr(data-label);
@@ -162,6 +197,15 @@
           text-transform: uppercase;
           color: var(--muted);
           margin-bottom: 4px;
+        }
+        tbody td.category-cell::before,
+        tbody td.day-cell::before {
+          display: inline-block;
+          margin: 0;
+          white-space: nowrap;
+        }
+        tbody td.day-cell .day-block {
+          padding: 8px 10px;
         }
       }
     </style>
@@ -189,33 +233,33 @@
                 <th>出し方のポイント</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td data-label="区分"><span class="chip pink">資源プラスチック</span></td>
-                <td data-label="出す日">毎週 火曜日<br />午前8時まで</td>
-                <td data-label="主なもの">フィルム、袋、キャップ、トレイ、カップ、ボトル・チューブ、CD/DVDケース、発泡スチロール、その他プラスチック</td>
-                <td data-label="出し方のポイント">汚れはふき取りか残り水で軽く洗う。ふた付き容器か中身の見える袋で出す。袋を二重にしない。</td>
-              </tr>
-              <tr>
-                <td data-label="区分"><span class="chip mint">資源</span></td>
-                <td data-label="出す日">毎週 金曜日<br />午前8時まで</td>
-                <td data-label="主なもの">ペットボトル、びん、かん、古紙、新聞紙、段ボール、紙パック、雑誌、菓子箱、トイレットペーパー芯など</td>
-                <td data-label="出し方のポイント">残り水で軽くすすぐ。ペットボトルはキャップとラベルを外す。びん・かんはコンテナまたは中身の見える袋へ。古紙は種類別にひもでしばる。</td>
-              </tr>
-              <tr>
-                <td data-label="区分"><span class="chip peach">可燃ごみ</span></td>
-                <td data-label="出す日">毎週 水曜日・土曜日<br />午前8時まで</td>
-                <td data-label="主なもの">汚れが落とせないプラスチック、生ごみ、資源に出せない紙類、ゴム・皮革製品、CD・ビデオテープ、衣類・紙おむつ</td>
-                <td data-label="出し方のポイント">生ごみは水をよく切る。排せつ物はトイレに流す。ふた付き容器か中身の見える袋で出す。</td>
-              </tr>
-              <tr>
-                <td data-label="区分"><span class="chip lavender">不燃ごみ</span></td>
-                <td data-label="出す日">毎月 第1・第3 月曜日<br />午前8時まで</td>
+            <tbody id="trash-schedule">
+              <tr data-sort-days="1">
+                <td data-label="区分" class="category-cell"><span class="chip lavender">不燃ごみ</span></td>
+                <td data-label="出す日" class="day-cell"><div class="day-block"><strong>第1・第3 月曜日</strong><span>午前8時まで</span></div></td>
                 <td data-label="主なもの">陶磁器・ガラス類、金属類、電球・蛍光灯、30cm未満の小型家電、カセットボンベ、スプレー缶、ライター</td>
                 <td data-label="出し方のポイント">刃物は新聞紙に包んで「キケン」と表示。蛍光灯は購入時のケースへ。カセットボンベ等は中身を使い切り、穴は開けず「キケン」と表示して別袋に。</td>
               </tr>
-              <tr>
-                <td data-label="区分"><span class="chip peach">粗大ごみ</span></td>
+              <tr data-sort-days="2">
+                <td data-label="区分" class="category-cell"><span class="chip pink">資源プラスチック</span></td>
+                <td data-label="出す日" class="day-cell"><div class="day-block"><strong>毎週 火曜日</strong><span>午前8時まで</span></div></td>
+                <td data-label="主なもの">フィルム、袋、キャップ、トレイ、カップ、ボトル・チューブ、CD/DVDケース、発泡スチロール、その他プラスチック</td>
+                <td data-label="出し方のポイント">汚れはふき取りか残り水で軽く洗う。ふた付き容器か中身の見える袋で出す。袋を二重にしない。</td>
+              </tr>
+              <tr data-sort-days="3,6">
+                <td data-label="区分" class="category-cell"><span class="chip peach">可燃ごみ</span></td>
+                <td data-label="出す日" class="day-cell"><div class="day-block"><strong>毎週 水曜日・土曜日</strong><span>午前8時まで</span></div></td>
+                <td data-label="主なもの">汚れが落とせないプラスチック、生ごみ、資源に出せない紙類、ゴム・皮革製品、CD・ビデオテープ、衣類・紙おむつ</td>
+                <td data-label="出し方のポイント">生ごみは水をよく切る。排せつ物はトイレに流す。ふた付き容器か中身の見える袋で出す。</td>
+              </tr>
+              <tr data-sort-days="5">
+                <td data-label="区分" class="category-cell"><span class="chip mint">資源</span></td>
+                <td data-label="出す日" class="day-cell"><div class="day-block"><strong>毎週 金曜日</strong><span>午前8時まで</span></div></td>
+                <td data-label="主なもの">ペットボトル、びん、かん、古紙、新聞紙、段ボール、紙パック、雑誌、菓子箱、トイレットペーパー芯など</td>
+                <td data-label="出し方のポイント">残り水で軽くすすぐ。ペットボトルはキャップとラベルを外す。びん・かんはコンテナまたは中身の見える袋へ。古紙は種類別にひもでしばる。</td>
+              </tr>
+              <tr data-sort-static="true">
+                <td data-label="区分" class="category-cell"><span class="chip peach">粗大ごみ</span></td>
                 <td data-label="出す日">事前申込制・有料</td>
                 <td data-label="主なもの">おおむね一辺が30cm以上のもの</td>
                 <td data-label="出し方のポイント">粗大ごみ受付センターへ連絡。電話 `03-6747-9253`。事業所ごみは区では回収不可。</td>
@@ -250,5 +294,40 @@
         </article>
       </section>
     </main>
+    <script>
+      (function () {
+        const tbody = document.getElementById("trash-schedule");
+        if (!tbody) return;
+
+        const day = new Date().getDay();
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        function distanceFromToday(row) {
+          if (row.dataset.sortStatic === "true") {
+            return 999;
+          }
+
+          const days = (row.dataset.sortDays || "")
+            .split(",")
+            .map((value) => Number.parseInt(value, 10))
+            .filter((value) => !Number.isNaN(value));
+
+          if (!days.length) {
+            return 998;
+          }
+
+          return Math.min(
+            ...days.map((targetDay) => {
+              const diff = (targetDay - day + 7) % 7;
+              return diff;
+            }),
+          );
+        }
+
+        rows
+          .sort((a, b) => distanceFromToday(a) - distanceFromToday(b))
+          .forEach((row) => tbody.appendChild(row));
+      })();
+    </script>
   </body>
 </html>

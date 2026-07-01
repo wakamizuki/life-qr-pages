@@ -1,5 +1,7 @@
 const APP_CONFIG = window.APP_CONFIG || {};
-const PASSCODE = APP_CONFIG.passcode || "reset-love";
+const PASSCODES = Array.isArray(APP_CONFIG.passcodes)
+  ? APP_CONFIG.passcodes
+  : [APP_CONFIG.passcode || "reset-love"];
 const STORAGE_KEY = "conversation-reset-state";
 const LOGS_KEY = "conversation-reset-logs";
 const CHECKS_KEY = "conversation-reset-checks";
@@ -65,8 +67,8 @@ function loadChecks() {
 }
 
 function unlock() {
-  if (passcodeInput.value !== PASSCODE) {
-    gateMessage.textContent = "パスコードが違います。`config.js` の passcode を確認してください。";
+  if (!PASSCODES.includes(passcodeInput.value)) {
+    gateMessage.textContent = "パスコードが違います。";
     return;
   }
 
