@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>彼女へ: 俺を知るページ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fff7fb;
+        --paper: rgba(255, 251, 253, 0.94);
+        --ink: #5a314f;
+        --muted: #906d82;
+        --line: rgba(209, 144, 177, 0.18);
+        --pink: #ffd4e7;
+        --rose: #f39bc3;
+        --peach: #ffe2d7;
+        --butter: #fff0be;
+        --shadow: 0 22px 60px rgba(218, 132, 172, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Zen Maru Gothic", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(255, 212, 231, 0.52), transparent 24%),
+          radial-gradient(circle at top right, rgba(255, 226, 215, 0.46), transparent 24%),
+          linear-gradient(180deg, #fffafd 0%, #fff2f8 100%);
+      }
+      .wrap {
+        width: min(1080px, calc(100% - 20px));
+        margin: 0 auto;
+        padding: 24px 0 56px;
+      }
+      .hero,
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+      .hero {
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: -30px;
+        top: -30px;
+        width: 190px;
+        height: 190px;
+        border-radius: 42px;
+        background: linear-gradient(135deg, rgba(243, 155, 195, 0.24), rgba(255, 226, 215, 0.18));
+        transform: rotate(15deg);
+      }
+      .eyebrow {
+        margin: 0 0 8px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      h1, h2, h3 { margin: 0; }
+      h1, h2 { font-family: "Fraunces", serif; }
+      h1 {
+        font-size: clamp(30px, 4.8vw, 50px);
+        line-height: 0.95;
+        max-width: 10ch;
+      }
+      .lead {
+        margin: 14px 0 0;
+        max-width: 46rem;
+        color: var(--muted);
+        line-height: 1.75;
+        font-size: 15px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 18px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .intro-note {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,251,253,0.98), rgba(255,239,246,0.9));
+      }
+      .intro-note p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.85;
+      }
+      .intro-note strong {
+        color: var(--ink);
+      }
+      .grid {
+        display: grid;
+        gap: 18px;
+        margin-top: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .card {
+        padding: 22px;
+      }
+      .wide {
+        grid-column: 1 / -1;
+      }
+      .section-title {
+        margin-bottom: 14px;
+        font-size: 24px;
+      }
+      .list {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr;
+      }
+      .item {
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,240,247,0.88));
+        overflow: hidden;
+      }
+      .item summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 14px 16px;
+      }
+      .item summary::-webkit-details-marker {
+        display: none;
+      }
+      .item summary::after {
+        content: "+";
+        float: right;
+        font-size: 20px;
+        line-height: 1;
+        color: var(--muted);
+      }
+      .item[open] summary::after {
+        content: "-";
+      }
+      .item h3 {
+        font-size: 18px;
+        line-height: 1.35;
+        display: inline;
+      }
+      .item-body {
+        padding: 0 16px 14px;
+      }
+      .item p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.68;
+        font-size: 14px;
+      }
+      .item p.subtle {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .chip {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        background: rgba(255, 250, 252, 0.98);
+        border: 1px solid var(--line);
+      }
+      .soft {
+        background: var(--pink);
+      }
+      .warm {
+        background: var(--peach);
+      }
+      .sun {
+        background: var(--butter);
+      }
+      .deep {
+        background: #b8d1ff;
+        color: #27457a;
+      }
+      .note {
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,251,253,0.98), rgba(255,237,246,0.9));
+      }
+      .note p {
+        margin: 0;
+        line-height: 1.8;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .note p + p {
+        margin-top: 10px;
+      }
+      .note strong {
+        color: var(--ink);
+      }
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <p class="eyebrow">For You</p>
+        <h1>彼女へ、俺を知ってもらうページ</h1>
+        <p class="lead">
+          どういう言葉や関わり方が嬉しいかを、重くなりすぎない形でまとめたページ。してほしいことを並べるというより、少しずつ知ってもらえたらうれしいことのメモ。
+        </p>
+        <div class="chips">
+          <span class="chip soft">言葉で伝えてもらえると嬉しい</span>
+          <span class="chip warm">笑顔に弱い</span>
+          <span class="chip sun">ハグが好き</span>
+          <span class="chip deep">苦手ポイントもある</span>
+        </div>
+        <div class="intro-note">
+          <p>
+            <strong>これは今すぐ上手にやってほしいという意味ではないし、強要したいわけでもない。</strong>
+            好意を言葉で伝えるのがまだ難しい中で、どう伝えたらいいか頑張ってくれていること自体が、自分は嬉しいです。
+            何度も自分が「言葉で伝えて」と求めてしまっているからこそ、最初にここを誤解なく置いておきたい。
+          </p>
+        </div>
+        <a class="back-link" href="./index.html">← メインページに戻る</a>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2 class="section-title">恋愛関係において、嬉しいこと</h2>
+          <div class="list">
+            <details class="item">
+              <summary><h3>一緒にいたい</h3></summary>
+              <div class="item-body">
+                <p>「一緒にいたい」「会えてうれしい」みたいに、存在そのものを求めてもらえる言葉がかなり嬉しい。</p>
+              </div>
+            </details>
+            <details class="item">
+              <summary><h3>好きなところを言ってもらえる</h3></summary>
+              <div class="item-body">
+                <p class="subtle">「こういうところが好き」「こういうとこがいいよね」と具体的に伝えてもらえると、ちゃんと見てもらえている感じがする。</p>
+              </div>
+            </details>
+            <details class="item">
+              <summary><h3>かまってくれる感じ</h3></summary>
+              <div class="item-body">
+                <p>ちょっと甘えてくれたり、かまちょっぽく来てくれるのも嬉しい。必要とされてる感じがあると喜ぶ。</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="section-title">恋愛関係において、苦手なこと</h2>
+          <div class="list">
+            <details class="item">
+              <summary><h3>「当たり前だから言わなくていい」は少し苦手</h3></summary>
+              <div class="item-body">
+                <p>自分は鈍感なところがあるので、言葉にしてもらわないと、彼女が本当にそう思ってくれているのか分からなくなりやすい。</p>
+                <p class="subtle">実例として、「俺を心配するのは当然だから、わざわざ伝えなくていい」と思っていても、自分は彼女が心配してくれていたこと自体を知らなかった、ということがあった。</p>
+              </div>
+            </details>
+            <details class="item">
+              <summary><h3>形式的すぎる伝わり方は少し苦手</h3></summary>
+              <div class="item-body">
+                <p>仕組みとして評価してくれているのはもちろん嬉しい。でも、作業っぽく整理された言い方だけだと、感情があまり乗っていないように感じて少し寂しくなる。</p>
+                <p class="subtle">実際に、彼女が言ってくれたことを自分がしている割合が高いから「めっちゃ高評価」と言ってくれたことがあった。もちろんそれは嬉しいけど、「嬉しい」とか「ちゃんと伝わってるよ」みたいに感情を乗せて褒めてもらえると、もっと深く届く。</p>
+              </div>
+            </details>
+            <details class="item">
+              <summary><h3>ハグや近さがないと物足りなくなりやすい</h3></summary>
+              <div class="item-body">
+                <p>ハグが好きだからこそ、言葉以外の近さや安心感がないと少し物足りなさを感じやすい。</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <h2 class="section-title">たぶん一番伝えたいこと</h2>
+          <div class="note">
+            <p>
+              自分は、<strong>言葉で気持ちを伝えてもらうこと</strong>にすごく弱いし、かなり嬉しくなる。
+              「一緒にいたい」とか、「こういうところ好きだよ」とか、そういう一言が思っている以上に残る。
+            </p>
+            <p>
+              それに加えて、<strong>笑顔を見せてくれること</strong>や、<strong>ハグしてくれること</strong>も好き。
+              大きなことじゃなくても、そういう小さい愛情表現がちゃんと刺さるタイプ。
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
