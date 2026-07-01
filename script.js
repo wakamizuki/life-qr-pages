@@ -12,97 +12,23 @@ const defaultChecklist = [
     note: "キレないでと言う前に、なぜその感情になったのかを見にいく。",
   },
   {
-    title: "質問だけで済ませない",
+    title: "仮説つきで聞く",
     note: "ただ聞くのではなく、自分なりの仮説を添えて確認する。",
   },
   {
-    title: "好意は行動で見られている",
+    title: "行動で示す前提を忘れない",
     note: "自分のために何をしてくれたかで評価される前提を忘れない。",
   },
   {
-    title: "比較で相手を下げない",
+    title: "比較は絶対に混ぜない",
     note: "他人との比較は絶対NG。伝え方の雑さにも注意する。",
   },
-];
-
-const fieldIds = [
-  "hypothesis-input",
-  "question-input",
-  "her-priorities",
-  "action-signals",
-  "my-priorities",
-  "gap-input",
-  "summary-input",
-  "reflection-input",
-  "next-action-input",
 ];
 
 const gate = document.getElementById("gate");
 const app = document.getElementById("app");
 const passcodeInput = document.getElementById("passcode-input");
 const gateMessage = document.getElementById("gate-message");
-const logsContainer = document.getElementById("logs");
-const saveMessage = document.getElementById("save-message");
-
-function loadState() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  } catch {
-    return {};
-  }
-}
-
-function persistState() {
-  const nextState = {};
-  for (const id of fieldIds) {
-    nextState[id] = document.getElementById(id).value;
-  }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
-}
-
-function restoreState() {
-  const state = loadState();
-  for (const id of fieldIds) {
-    const field = document.getElementById(id);
-    field.value = state[id] || "";
-    field.addEventListener("input", persistState);
-  }
-}
-
-function loadLogs() {
-  try {
-    return JSON.parse(localStorage.getItem(LOGS_KEY) || "[]");
-  } catch {
-    return [];
-  }
-}
-
-function saveLogs(logs) {
-  localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
-}
-
-function renderLogs() {
-  const logs = loadLogs();
-  if (!logs.length) {
-    logsContainer.innerHTML = '<p class="hint">まだ記録はありません。最初の1回を残しておくと、次からズレが見えやすくなります。</p>';
-    return;
-  }
-
-  logsContainer.innerHTML = logs
-    .slice()
-    .reverse()
-    .map(
-      (log) => `
-        <article class="log-item">
-          <time>${new Date(log.savedAt).toLocaleString("ja-JP")}</time>
-          <p><strong>要点:</strong> ${escapeHtml(log.summary || "未入力")}</p>
-          <p><strong>振り返り:</strong> ${escapeHtml(log.reflection || "未入力")}</p>
-          <p><strong>次のアクション:</strong> ${escapeHtml(log.nextAction || "未入力")}</p>
-        </article>
-      `,
-    )
-    .join("");
-}
 
 function renderChecklist() {
   const savedChecks = loadChecks();
@@ -138,19 +64,9 @@ function loadChecks() {
   }
 }
 
-function escapeHtml(text) {
-  return text
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;")
-    .replaceAll("\n", "<br>");
-}
-
 function unlock() {
   if (passcodeInput.value !== PASSCODE) {
-    gateMessage.textContent = "パスコードが違います。`script.js` の PASSCODE を自分用に変えて使ってください。";
+    gateMessage.textContent = "パスコードが違います。`config.js` の passcode を確認してください。";
     return;
   }
 
@@ -186,86 +102,15 @@ async function sendToWebhook(log) {
   return { skipped: false };
 }
 
-async function saveLog() {
-  const checks = loadChecks();
-  const log = {
-    savedAt: new Date().toISOString(),
-    pageUrl: window.location.href,
-    summary: document.getElementById("summary-input").value.trim(),
-    reflection: document.getElementById("reflection-input").value.trim(),
-    nextAction: document.getElementById("next-action-input").value.trim(),
-    hypothesis: document.getElementById("hypothesis-input").value.trim(),
-    question: document.getElementById("question-input").value.trim(),
-    herPriorities: document.getElementById("her-priorities").value.trim(),
-    actionSignals: document.getElementById("action-signals").value.trim(),
-    myPriorities: document.getElementById("my-priorities").value.trim(),
-    gap: document.getElementById("gap-input").value.trim(),
-    checklistStatus: defaultChecklist.map((item, index) => ({
-      title: item.title,
-      checked: Boolean(checks[index]),
-    })),
-  };
-
-  const logs = loadLogs();
-  logs.push(log);
-  saveLogs(logs);
-  renderLogs();
-
-  try {
-    const webhookResult = await sendToWebhook(log);
-    saveMessage.textContent = webhookResult.skipped
-      ? "今日の記録をブラウザ内に保存しました。Webhook URL を設定するとスプレッドシート連携もできます。"
-      : "今日の記録をブラウザ内に保存し、スプレッドシートにも送信しました。";
-  } catch (error) {
-    console.error(error);
-    saveMessage.textContent = "ブラウザ内には保存しました。Webhook 送信は失敗したので URL 設定を確認してください。";
-  }
-}
-
-function clearInputs() {
-  for (const id of ["summary-input", "reflection-input", "next-action-input"]) {
-    document.getElementById(id).value = "";
-  }
-  persistState();
-  saveMessage.textContent = "会話後の入力欄だけ空にしました。";
-}
-
-function exportLogs() {
-  const logs = loadLogs();
-  const lines = [
-    ["savedAt", "summary", "reflection", "nextAction", "hypothesis"].join(","),
-    ...logs.map((log) =>
-      [log.savedAt, log.summary, log.reflection, log.nextAction, log.hypothesis]
-        .map((value) => `"${String(value || "").replaceAll('"', '""')}"`)
-        .join(","),
-    ),
-  ];
-
-  const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "conversation-reset-logs.csv";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-}
-
 document.getElementById("unlock-button").addEventListener("click", unlock);
 document.getElementById("lock-button").addEventListener("click", lock);
-document.getElementById("save-button").addEventListener("click", saveLog);
-document.getElementById("clear-button").addEventListener("click", clearInputs);
-document.getElementById("export-button").addEventListener("click", exportLogs);
 passcodeInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     unlock();
   }
 });
 
-restoreState();
 renderChecklist();
-renderLogs();
 
 if (sessionStorage.getItem("conversation-reset-unlocked") === "true") {
   gate.classList.add("hidden");

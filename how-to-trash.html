@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ゴミ出しガイド</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fff9fb;
+        --paper: rgba(255, 255, 255, 0.94);
+        --ink: #503347;
+        --muted: #8c6880;
+        --line: rgba(198, 137, 168, 0.18);
+        --pink: #f8bfd7;
+        --peach: #ffd8c8;
+        --mint: #dff5e9;
+        --lavender: #e5ddff;
+        --shadow: 0 22px 60px rgba(203, 124, 160, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Zen Maru Gothic", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(248, 191, 215, 0.46), transparent 24%),
+          radial-gradient(circle at top right, rgba(255, 216, 200, 0.38), transparent 22%),
+          linear-gradient(180deg, #fffafd 0%, #fff4f8 100%);
+      }
+      .wrap {
+        width: min(1100px, calc(100% - 20px));
+        margin: 0 auto;
+        padding: 24px 0 56px;
+      }
+      .hero, .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+      .hero {
+        padding: 28px;
+        margin-bottom: 18px;
+      }
+      .eyebrow {
+        margin: 0 0 8px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      h1, h2, h3 { margin: 0; }
+      h1, h2 { font-family: "Fraunces", serif; }
+      h1 {
+        font-size: clamp(36px, 6vw, 64px);
+        line-height: 0.96;
+        max-width: 10ch;
+      }
+      .lead {
+        margin: 14px 0 0;
+        max-width: 52rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+      .card { padding: 22px; }
+      .section-title {
+        margin-bottom: 14px;
+        font-size: 30px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 22px;
+      }
+      thead th {
+        text-align: left;
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 700;
+        padding: 14px 16px;
+        background: rgba(255, 247, 251, 0.95);
+        border-bottom: 1px solid var(--line);
+      }
+      tbody td {
+        padding: 16px;
+        vertical-align: top;
+        border-bottom: 1px solid rgba(198, 137, 168, 0.12);
+        line-height: 1.75;
+      }
+      tbody tr:last-child td { border-bottom: none; }
+      .chip {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .pink { background: var(--pink); }
+      .mint { background: var(--mint); }
+      .peach { background: var(--peach); }
+      .lavender { background: var(--lavender); }
+      .notes {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .note {
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,243,248,0.88));
+      }
+      .note p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .small {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      a.back {
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+      }
+      @media (max-width: 860px) {
+        .notes { grid-template-columns: 1fr; }
+        table, thead, tbody, th, td, tr { display: block; }
+        thead { display: none; }
+        tbody tr {
+          border: 1px solid var(--line);
+          border-radius: 20px;
+          margin-bottom: 12px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.9);
+        }
+        tbody td {
+          border-bottom: 1px solid rgba(198, 137, 168, 0.1);
+          padding: 12px 14px;
+        }
+        tbody td:last-child { border-bottom: none; }
+        tbody td::before {
+          content: attr(data-label);
+          display: block;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--muted);
+          margin-bottom: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <p class="eyebrow">Trash Guide</p>
+        <h1>ゴミ出し方法を、すぐ見返せる形に</h1>
+        <p class="lead">
+          画像の内容を、曜日・分別・出し方の注意点で見やすくまとめたページです。基本ルールは、指定日の午前8時までに出すこと。
+        </p>
+        <p class="small"><a class="back" href="./index.html">← メインページに戻る</a></p>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2 class="section-title">曜日ごとの分別</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>区分</th>
+                <th>出す日</th>
+                <th>主なもの</th>
+                <th>出し方のポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="区分"><span class="chip pink">資源プラスチック</span></td>
+                <td data-label="出す日">毎週 火曜日<br />午前8時まで</td>
+                <td data-label="主なもの">フィルム、袋、キャップ、トレイ、カップ、ボトル・チューブ、CD/DVDケース、発泡スチロール、その他プラスチック</td>
+                <td data-label="出し方のポイント">汚れはふき取りか残り水で軽く洗う。ふた付き容器か中身の見える袋で出す。袋を二重にしない。</td>
+              </tr>
+              <tr>
+                <td data-label="区分"><span class="chip mint">資源</span></td>
+                <td data-label="出す日">毎週 金曜日<br />午前8時まで</td>
+                <td data-label="主なもの">ペットボトル、びん、かん、古紙、新聞紙、段ボール、紙パック、雑誌、菓子箱、トイレットペーパー芯など</td>
+                <td data-label="出し方のポイント">残り水で軽くすすぐ。ペットボトルはキャップとラベルを外す。びん・かんはコンテナまたは中身の見える袋へ。古紙は種類別にひもでしばる。</td>
+              </tr>
+              <tr>
+                <td data-label="区分"><span class="chip peach">可燃ごみ</span></td>
+                <td data-label="出す日">毎週 水曜日・土曜日<br />午前8時まで</td>
+                <td data-label="主なもの">汚れが落とせないプラスチック、生ごみ、資源に出せない紙類、ゴム・皮革製品、CD・ビデオテープ、衣類・紙おむつ</td>
+                <td data-label="出し方のポイント">生ごみは水をよく切る。排せつ物はトイレに流す。ふた付き容器か中身の見える袋で出す。</td>
+              </tr>
+              <tr>
+                <td data-label="区分"><span class="chip lavender">不燃ごみ</span></td>
+                <td data-label="出す日">毎月 第1・第3 月曜日<br />午前8時まで</td>
+                <td data-label="主なもの">陶磁器・ガラス類、金属類、電球・蛍光灯、30cm未満の小型家電、カセットボンベ、スプレー缶、ライター</td>
+                <td data-label="出し方のポイント">刃物は新聞紙に包んで「キケン」と表示。蛍光灯は購入時のケースへ。カセットボンベ等は中身を使い切り、穴は開けず「キケン」と表示して別袋に。</td>
+              </tr>
+              <tr>
+                <td data-label="区分"><span class="chip peach">粗大ごみ</span></td>
+                <td data-label="出す日">事前申込制・有料</td>
+                <td data-label="主なもの">おおむね一辺が30cm以上のもの</td>
+                <td data-label="出し方のポイント">粗大ごみ受付センターへ連絡。電話 `03-6747-9253`。事業所ごみは区では回収不可。</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <h2 class="section-title">見落としやすい注意点</h2>
+          <div class="notes">
+            <section class="note">
+              <h3>プラスチックは「プラマーク」が目安</h3>
+              <p>汚れが落ちないものは資源プラスチックではなく、可燃ごみに回すのが安全です。</p>
+            </section>
+            <section class="note">
+              <h3>ペットボトルは本体だけ</h3>
+              <p>キャップとラベルは外して、ペットボトルだけを出します。びん・かんも軽くすすいでから。</p>
+            </section>
+            <section class="note">
+              <h3>古紙は袋に入れない</h3>
+              <p>新聞、段ボール、紙パック、雑誌などは種類ごとにまとめて、ひもでしばって出します。</p>
+            </section>
+            <section class="note">
+              <h3>危険物は表示をつける</h3>
+              <p>刃物やスプレー缶、ライターはそのまま出さず、「キケン」と分かる形で別にまとめます。</p>
+            </section>
+          </div>
+          <p class="small">
+            家具の無料引き取り案内も掲示されています。家具のリサイクル展は `9:30〜16:30`、問い合わせは `03-3472-8186` と読めます。
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

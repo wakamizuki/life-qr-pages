@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conversation Reset</title>
+    <title>Know Her Better</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,10 +18,10 @@
 
     <main class="shell">
       <section class="gate card" id="gate">
-        <p class="eyebrow">Private Check-In</p>
-        <h1>入る前に、自分の姿勢を整えるページ</h1>
+        <p class="eyebrow">Soft Check-In</p>
+        <h1>彼女をもっと知るための、やさしい準備</h1>
         <p class="lead">
-          GitHub Pagesでそのまま動く、個人用の確認ページです。まずはパスコードを入れて開きます。
+          会う前に少しだけ立ち止まって、どうすると安心してもらいやすいかを思い出すためのページです。
         </p>
         <label class="field">
           <span>パスコード</span>
@@ -36,94 +36,146 @@
       <section class="app hidden" id="app">
         <header class="hero card">
           <div>
-            <p class="eyebrow">Conversation Reset</p>
-            <h1>理解を先に置くための、小さな儀式</h1>
+            <p class="eyebrow">Know Her Better</p>
+            <h1>今日は、彼女をもう少し深く知りにいく</h1>
             <p class="lead">
-              質問だけで終わらせず、仮説を持って向き合う。好意は言葉だけではなく、行動でも示す。
+              正しさを急がず、気持ちの背景を見にいく。言葉だけでなく、安心につながる行動でも向き合う。
             </p>
           </div>
           <div class="hero-actions">
             <button id="lock-button" class="ghost-button" type="button">閉じる</button>
-            <button id="export-button" class="ghost-button" type="button">記録を書き出す</button>
           </div>
         </header>
 
         <section class="grid">
+          <article class="card wide">
+            <p class="section-label">Linked Pages</p>
+            <h2>生活メモへのリンク</h2>
+            <div class="link-cards">
+              <a class="link-card" href="./how-to-wash.html">
+                <strong>お風呂掃除ガイド</strong>
+                <p>毎日・週1・月1の掃除頻度と、床掃除ロボの手入れを整理したページ。</p>
+              </a>
+              <a class="link-card" href="./how-to-trash.html">
+                <strong>ゴミ出しガイド</strong>
+                <p>曜日ごとの分別と、出し方の注意点を表でまとめたページ。</p>
+              </a>
+            </div>
+          </article>
+
           <article class="card">
             <p class="section-label">Before You Enter</p>
-            <h2>今日の前提</h2>
+            <h2>会う前に思い出すこと</h2>
             <div class="checklist" id="entry-checklist"></div>
           </article>
 
           <article class="card">
-            <p class="section-label">Hypothesis</p>
-            <h2>仮説ベースで聞くための準備</h2>
-            <div class="stack">
-              <label class="field">
-                <span>今の自分の仮説</span>
-                <textarea id="hypothesis-input" rows="4" placeholder="例: 連絡の仕方が雑に見えて、不安や軽視された感じにつながっているかもしれない。"></textarea>
-              </label>
-              <label class="field">
-                <span>仮説をやわらかく聞く言い方</span>
-                <textarea id="question-input" rows="3" placeholder="例: もしかして、今日のやり取りが雑に感じて嫌だったから怒ってる?"></textarea>
-              </label>
+            <p class="section-label">Priorities</p>
+            <h2>二人の優先順位</h2>
+            <div class="priority-columns">
+              <section class="priority-card">
+                <p class="priority-label">彼女</p>
+                <ol class="priority-list">
+                  <li>感情への寄り添いが先にあること</li>
+                  <li>指示待ちではなく、打ち手を持って考えてくれること</li>
+                  <li>好意を行動で見せてくれること</li>
+                  <li>比較せず、自分をまっすぐ見てくれること</li>
+                </ol>
+              </section>
+              <section class="priority-card">
+                <p class="priority-label">自分</p>
+                <ol class="priority-list">
+                  <li>何を直せばいいかを早く知りたい</li>
+                  <li>解決策や打ち手を出して前に進めたい</li>
+                  <li>会話を整理して理解したい</li>
+                  <li>問題を早く収めたい</li>
+                </ol>
+              </section>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="section-label">Examples</p>
+            <h2>すれ違いやすい場面</h2>
+            <div class="examples">
+              <article class="example-item">
+                <strong>「なんで怒ってるの?」だけで終わる</strong>
+                <p>気持ちを理解しようとしていないように見えやすい。仮説なしの質問だけだと、丸投げに感じられる。</p>
+                <p class="example-voice">例: 「もしかして、雑に扱われた感じがして嫌だった?」まで添える。</p>
+              </article>
+              <article class="example-item">
+                <strong>キレている時に「キレないで」と返す</strong>
+                <p>感情そのものを止めようとすると、理由を見てもらえない感覚につながる。</p>
+                <p class="example-voice">例: 「怒ってるのは、軽く扱われた感じがしたから?」と理由に向かう。</p>
+              </article>
+              <article class="example-item">
+                <strong>説明や正しさを先に出す</strong>
+                <p>自分の事情を先に話すと、受け止めてもらえなかった印象が残りやすい。</p>
+                <p class="example-voice">例: まず「それは嫌だったよね」と受け止めてから、自分の話は後にする。</p>
+              </article>
+              <article class="example-item">
+                <strong>他人との比較が混ざる</strong>
+                <p>誰かと比べて下げられたと感じると、それだけで強いNGになる。</p>
+                <p class="example-voice">例: 比較は完全に避けて、「あなたに対して自分がどうしたか」だけで話す。</p>
+              </article>
             </div>
           </article>
 
           <article class="card">
             <p class="section-label">Her Lens</p>
-            <h2>彼女が大事にしていること</h2>
-            <label class="field">
-              <span>理想の順位メモ</span>
-              <textarea id="her-priorities" rows="6" placeholder="上から順位で書く。例: 1. 安心感 2. 行動での愛情 3. 比較しないこと"></textarea>
-            </label>
-            <label class="field">
-              <span>行動で示せたこと</span>
-              <textarea id="action-signals" rows="4" placeholder="例: 今日は話を遮らず最後まで聞いた / 帰る前に次回の改善を具体化した"></textarea>
-            </label>
+            <h2>彼女が安心しやすいポイント</h2>
+            <div class="principles">
+              <article class="principle-item">
+                <strong>指示待ちではなく、打ち手を持つ</strong>
+                <p>何が嫌だったかを理解した上で、自分から改善案まで考えて持っていく。</p>
+              </article>
+              <article class="principle-item">
+                <strong>好意は行動ベースで見られる</strong>
+                <p>「好きと言った」より「自分のために何をしてくれたか」で評価されやすい。</p>
+              </article>
+              <article class="principle-item">
+                <strong>仮説つきで確認する</strong>
+                <p>「何で怒ってるの?」ではなく、「こう感じたから怒ってる?」と解像度を上げる。</p>
+              </article>
+            </div>
           </article>
 
           <article class="card">
-            <p class="section-label">My Lens</p>
-            <h2>自分の優先順位とズレ</h2>
-            <label class="field">
-              <span>自分の順位メモ</span>
-              <textarea id="my-priorities" rows="6" placeholder="自分が大事にしがちな順番を書く"></textarea>
-            </label>
-            <label class="field">
-              <span>今日気をつけるズレ</span>
-              <textarea id="gap-input" rows="4" placeholder="例: 正しさを急ぎすぎる / 気持ちの確認より説明を先にしやすい"></textarea>
-            </label>
+            <p class="section-label">Ready Phrases</p>
+            <h2>言い方のヒント</h2>
+            <div class="examples compact">
+              <article class="example-item">
+                <strong>悪い例</strong>
+                <p>「なんで怒ってるの?」</p>
+                <p class="example-voice">良い例: 「感情の寄り添いがなかったから、嫌だった?」</p>
+              </article>
+              <article class="example-item">
+                <strong>悪い例</strong>
+                <p>「そんなつもりじゃなかった」</p>
+                <p class="example-voice">良い例: 「そう受け取られる行動だったのは事実だね」</p>
+              </article>
+              <article class="example-item">
+                <strong>悪い例</strong>
+                <p>「次は気をつける」</p>
+                <p class="example-voice">良い例: 「次はまず最後まで聞いてから返す。比較っぽい言い方は使わない」</p>
+              </article>
+            </div>
           </article>
 
           <article class="card wide">
-            <p class="section-label">Conversation Notes</p>
-            <h2>会話のあとに残すログ</h2>
-            <div class="stack">
-              <label class="field">
-                <span>今日の会話の要点</span>
-                <textarea id="summary-input" rows="4" placeholder="何が起きて、何が本当の論点だったか"></textarea>
-              </label>
-              <label class="field">
-                <span>彼女の理想をどれくらいできたか</span>
-                <textarea id="reflection-input" rows="4" placeholder="できたこと / できなかったこと / 次に直すこと"></textarea>
-              </label>
-              <label class="field">
-                <span>次回の具体アクション</span>
-                <textarea id="next-action-input" rows="3" placeholder="例: 次回は先に5分聞ききる / 比較っぽい表現は使わない"></textarea>
-              </label>
+            <p class="section-label">Friction Point</p>
+            <h2>今、問題になりやすいところ</h2>
+            <div class="problem-note">
+              <p>
+                最近いちばん大きいのは、ちゃんと対話できないこと。自分は早く前に進めたくて
+                <strong>打ち手ベースで要求</strong>しやすいけれど、彼女からすると
+                <strong>感情への寄り添いがないまま解決に進まれる</strong>感じがして、そこでイライラが強くなりやすい。
+              </p>
+              <p>
+                つまり今のズレは、何をするかより先に、
+                <strong>どう受け止めるか</strong>が足りなくなりやすいこと。まずは「何が嫌だったのか」「何が不安だったのか」を仮説つきで受け止めるところから始める。
+              </p>
             </div>
-            <div class="button-row">
-              <button id="save-button" class="primary-button" type="button">今日の記録を保存</button>
-              <button id="clear-button" class="ghost-button" type="button">入力だけ消す</button>
-            </div>
-            <p id="save-message" class="hint"></p>
-          </article>
-
-          <article class="card wide">
-            <p class="section-label">Saved Logs</p>
-            <h2>これまでの記録</h2>
-            <div id="logs" class="logs"></div>
           </article>
         </section>
       </section>
