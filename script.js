@@ -25,6 +25,10 @@ const defaultChecklist = [
     title: "比較は絶対に混ぜない",
     note: "他人との比較は絶対NG。伝え方の雑さにも注意する。",
   },
+  {
+    title: "正しさより先に気持ちを受け止める",
+    note: "相手が嫌な気持ちで怒っている時は、正論かどうかや筋が通っているかより、まずその感情に寄り添う。",
+  },
 ];
 
 const gate = document.getElementById("gate");
