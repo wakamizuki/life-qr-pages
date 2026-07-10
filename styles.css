@@ -257,14 +257,15 @@ textarea:focus {
 
 .check-item strong {
   display: block;
-  font-size: 0.98rem;
+  font-size: 0.94rem;
+  line-height: 1.4;
 }
 
 .check-item p {
   margin: 0.15rem 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.84rem;
+  line-height: 1.42;
 }
 
 .examples,
